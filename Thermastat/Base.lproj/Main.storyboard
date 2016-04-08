@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Thermastat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,83 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2000" minValue="0.0" maxValue="12000" translatesAutoresizingMaskIntoConstraints="NO" id="lcS-yg-hiv">
+                                <rect key="frame" x="68" y="111" width="464" height="31"/>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2000" minValue="0.0" maxValue="12000" translatesAutoresizingMaskIntoConstraints="NO" id="N4I-LY-Ehw">
+                                <rect key="frame" x="68" y="171" width="464" height="31"/>
+                            </slider>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="DE:AD:BE:EF" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xb0-h3-gd5">
+                                <rect key="frame" x="70" y="51" width="460" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZh-uH-S1r">
+                                <rect key="frame" x="70" y="289" width="460" height="30"/>
+                                <state key="normal" title="Send"/>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="DL2-hn-gFG">
+                                <rect key="frame" x="70" y="231" width="460" height="29"/>
+                                <segments>
+                                    <segment title="Offline"/>
+                                    <segment title="Online"/>
+                                    <segment title="Update"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vcap" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alg-kl-rqJ">
+                                <rect key="frame" x="282" y="89" width="37" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5F2-R4-0WU">
+                                <rect key="frame" x="288" y="142" width="25" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="N4I-LY-Ehw" firstAttribute="top" secondItem="lcS-yg-hiv" secondAttribute="bottom" constant="30" id="20e-yw-8iO"/>
+                            <constraint firstItem="alg-kl-rqJ" firstAttribute="top" secondItem="Xb0-h3-gd5" secondAttribute="bottom" constant="8" id="6fH-Fd-ppO"/>
+                            <constraint firstItem="5F2-R4-0WU" firstAttribute="top" secondItem="lcS-yg-hiv" secondAttribute="bottom" constant="1" id="8aw-EE-cjk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DL2-hn-gFG" secondAttribute="trailing" constant="50" id="949-FX-Jmc"/>
+                            <constraint firstItem="DL2-hn-gFG" firstAttribute="top" secondItem="N4I-LY-Ehw" secondAttribute="bottom" constant="30" id="Esg-kC-TA9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DZh-uH-S1r" secondAttribute="trailing" constant="50" id="KtV-he-xa2"/>
+                            <constraint firstItem="alg-kl-rqJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="L7D-gx-dd9"/>
+                            <constraint firstItem="DL2-hn-gFG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="50" id="Rr8-36-Qk0"/>
+                            <constraint firstItem="5F2-R4-0WU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jcG-qY-nes"/>
+                            <constraint firstItem="N4I-LY-Ehw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="50" id="lRW-EH-57w"/>
+                            <constraint firstItem="lcS-yg-hiv" firstAttribute="top" secondItem="Xb0-h3-gd5" secondAttribute="bottom" constant="30" id="mJU-da-jKb"/>
+                            <constraint firstItem="Xb0-h3-gd5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="31" id="nXV-PH-u3l"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="N4I-LY-Ehw" secondAttribute="trailing" constant="50" id="pUI-KY-lbV"/>
+                            <constraint firstItem="Xb0-h3-gd5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="50" id="rRL-Er-RRT"/>
+                            <constraint firstItem="DZh-uH-S1r" firstAttribute="top" secondItem="DL2-hn-gFG" secondAttribute="bottom" constant="30" id="sed-hB-Isg"/>
+                            <constraint firstItem="lcS-yg-hiv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="50" id="tSS-8r-9rJ"/>
+                            <constraint firstItem="DZh-uH-S1r" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="50" id="v3d-vN-Ld0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Xb0-h3-gd5" secondAttribute="trailing" constant="50" id="wKJ-2j-vCj"/>
+                            <constraint firstItem="DL2-hn-gFG" firstAttribute="top" secondItem="lcS-yg-hiv" secondAttribute="bottom" constant="30" id="wMx-AQ-gz7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lcS-yg-hiv" secondAttribute="trailing" constant="50" id="yd5-4E-fVx"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="wMx-AQ-gz7"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="BatSlider" destination="N4I-LY-Ehw" id="MbV-LJ-d1H"/>
+                        <outlet property="CapSlider" destination="lcS-yg-hiv" id="ewC-fm-ySD"/>
+                        <outlet property="DeviceName" destination="Xb0-h3-gd5" id="eSn-G0-BpJ"/>
+                        <outlet property="SendButton" destination="DZh-uH-S1r" id="niQ-1h-YH5"/>
+                        <outlet property="StateSegement" destination="DL2-hn-gFG" id="QQt-oX-XOo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="305" y="387"/>
         </scene>
     </scenes>
 </document>
