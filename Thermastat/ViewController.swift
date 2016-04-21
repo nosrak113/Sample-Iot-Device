@@ -45,32 +45,87 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        //SendButton.addTarget(self, action: #selector(ViewController.sendPressed(_:)), forControlEvents: .TouchUpInside)
+        Initbutton.addTarget(self, action: #selector(ViewController.sendInitEvent(_:)), forControlEvents: .TouchUpInside)
+        InteractionButton.addTarget(self, action: #selector(ViewController.sendInteractEvent(_:)), forControlEvents: .TouchUpInside)
+        ScaleButton.addTarget(self, action: #selector(ViewController.sendScaleUpdateEvent(_:)), forControlEvents: .TouchUpInside)
+        GoalButton.addTarget(self, action: #selector(ViewController.sendGoalEvent(_:)), forControlEvents: .TouchUpInside)
+        
+        
+        WeightSlider.addTarget(self, action: #selector(ViewController.weightValueChanged(_:)), forControlEvents: .ValueChanged)
+         WeightGoalSlider.addTarget(self, action: #selector(ViewController.weightgoalValueChanged(_:)), forControlEvents: .ValueChanged)
+         GoalDurationSlider.addTarget(self, action: #selector(ViewController.durationChanged(_:)), forControlEvents: .ValueChanged)
+         CalIntakeSlider.addTarget(self, action: #selector(ViewController.calIntakeValueChanged(_:)), forControlEvents: .ValueChanged)
     }
     
     
-    func sendPressed(sender: UIButton!) {
-        let url = "https://ingestion-r8xxs5mrp6s7.us3.sfdcnow.com/streams/device_data_home001/device_events_hom001/event"
+    
+    func weightValueChanged(sender: AnyObject){
+        self.WeightLabel.text = "\(self.WeightSlider.value)"
+    }
+    func weightgoalValueChanged(sender: AnyObject){
+        self.WeightGoalLabel.text = "\(self.WeightGoalSlider.value)"
+    }
+    func durationChanged(sender: AnyObject){
+        self.DurationLabel.text = "\(self.GoalDurationSlider.value)"
+    }
+    func calIntakeValueChanged(sender: AnyObject){
+        self.CalIntakeLabel.text = "\(self.CalIntakeSlider.value)"
+    }
+    
+    
+    func sendInitEvent(sender: UIButton!) {
+        let url = "https://ingestion-5mj009w3h445.test.sfdc-matrix.net/streams/customer_centric_001/initializing_even001/event"
         let URL = NSURL(string: url)!
-//        
-//        
-//
-//        
-//        
-//        let data = ["D_id":self.DeviceName.text!,
-//                    "Status": self.StateSegement.selectedSegmentIndex.description,
-//                    "Operational_data": [
-//                        "Cap_Voltage" : "\(self.CapSlider.value)",
-//                        "Bat_Voltage" : "\(self.BatSlider.value)"
-//                        ]
-//                    
-//                    ]
-//        
-//        
-//        Alamofire.request(.POST, URL, parameters: (data as! [String : AnyObject]), encoding: ParameterEncoding.JSON, headers: header)
         
+        let data = [ "userId":self.UserID.text!]
+        Alamofire.request(.POST, URL, parameters: data, encoding: ParameterEncoding.JSON, headers: header)
         
     }
+    
+    
+    func sendInteractEvent(sender: UIButton!) {
+        let url = "https://ingestion-5mj009w3h445.test.sfdc-matrix.net/streams/customer_centric_001/user_interactions001/event"
+        let URL = NSURL(string: url)!
+        
+        let data = [ "userId":self.UserID.text!,
+                     "action":self.UserAction.text!
+        ]
+        
+        Alamofire.request(.POST, URL, parameters: data, encoding: ParameterEncoding.JSON, headers: header)
+        
+    }
+    
+    
+    func sendScaleUpdateEvent(sender: UIButton!) {
+        let url = "https://ingestion-5mj009w3h445.test.sfdc-matrix.net/streams/customer_centric_001/scale_updates001/event"
+        let URL = NSURL(string: url)!
+        
+        let data = [ "userId":self.UserID.text!,
+                     "weightMeasure":self.WeightSlider.value,
+                      "date":self.EventDate.text!
+        ]
+        
+        Alamofire.request(.POST, URL, parameters: (data as! [String : AnyObject]), encoding: ParameterEncoding.JSON, headers: header)
+        
+    }
+    
+    
+    func sendGoalEvent(sender: UIButton!) {
+        
+        let url = "https://ingestion-5mj009w3h445.test.sfdc-matrix.net/streams/customer_centric_001/goal_updates001/event"
+        let URL = NSURL(string: url)!
+        
+        let data = [ "userId":self.UserID.text!,
+                     "startDate":self.EventDate.text!,
+                     "weightGoal":self.WeightGoalSlider.value,
+                     "duration":self.GoalDurationSlider.value,
+                     "calorieIntake":self.CalIntakeSlider.value
+        ]
+        
+        Alamofire.request(.POST, URL, parameters: (data as! [String : AnyObject]), encoding: ParameterEncoding.JSON, headers: header)
+    }
+    
+    
 
 
     override func didReceiveMemoryWarning() {
