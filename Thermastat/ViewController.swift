@@ -60,10 +60,10 @@ class ViewController: UIViewController {
     
     
     func weightValueChanged(sender: AnyObject){
-        self.WeightLabel.text = "\(self.WeightSlider.value)"
+        self.WeightLabel.text = "\(self.WeightSlider.value) lbs"
     }
     func weightgoalValueChanged(sender: AnyObject){
-        self.WeightGoalLabel.text = "\(self.WeightGoalSlider.value)"
+        self.WeightGoalLabel.text = "\(self.WeightGoalSlider.value) lbs"
     }
     func durationChanged(sender: AnyObject){
         self.DurationLabel.text = "\(self.GoalDurationSlider.value)"
