@@ -11,14 +11,33 @@ import Alamofire
 
 
 class ViewController: UIViewController {
-    
-    @IBOutlet var DeviceName : UITextField!
-    @IBOutlet var CapSlider : UISlider!
-    @IBOutlet var BatSlider : UISlider!
-    @IBOutlet var StateSegement : UISegmentedControl!
-    @IBOutlet var SendButton : UIButton!
-    
 
+    let header = ["Authorization": "Bearer QvdV46oxGURLrOL5EsazVH7pyZHCmC4JYXpNtWpBLlhL9eVlr6FIZGkTWI9Hxgydkpnzm2lU9vA8sS01Kkv0Jn",
+                  "Content-Type":"application/json"]
+    
+    
+    @IBOutlet weak var UserID: UITextField!
+    @IBOutlet weak var UserAction: UITextField!
+    @IBOutlet weak var EventDate: UITextField!
+    
+    @IBOutlet weak var WeightSlider: UISlider!
+    @IBOutlet weak var WeightGoalSlider: UISlider!
+    @IBOutlet weak var GoalDurationSlider: UISlider!
+    @IBOutlet weak var CalIntakeSlider: UISlider!
+    
+    
+    @IBOutlet weak var Initbutton: UIButton!
+    @IBOutlet weak var InteractionButton: UIButton!
+    @IBOutlet weak var ScaleButton: UIButton!
+    @IBOutlet weak var GoalButton: UIButton!
+    
+    
+    @IBOutlet weak var WeightLabel: UILabel!
+    @IBOutlet weak var WeightGoalLabel: UILabel!
+    @IBOutlet weak var DurationLabel: UILabel!
+    @IBOutlet weak var CalIntakeLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -26,30 +45,29 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        SendButton.addTarget(self, action: #selector(ViewController.sendPressed(_:)), forControlEvents: .TouchUpInside)
+        //SendButton.addTarget(self, action: #selector(ViewController.sendPressed(_:)), forControlEvents: .TouchUpInside)
     }
     
     
     func sendPressed(sender: UIButton!) {
         let url = "https://ingestion-r8xxs5mrp6s7.us3.sfdcnow.com/streams/device_data_home001/device_events_hom001/event"
         let URL = NSURL(string: url)!
-        
-        
-
-        let header = ["Authorization": "Bearer 9njon90NAkISmq73jFwwlqS24u3ykfJAOVEIMfaNYW8eJEIDUvLYam4fEX6mc5RqNfRWTCVPRNugggzZxtle9n",
-                      "Content-Type":"application/json"]
-        
-        let data = ["D_id":self.DeviceName.text!,
-                    "Status": self.StateSegement.selectedSegmentIndex.description,
-                    "Operational_data": [
-                        "Cap_Voltage" : "\(self.CapSlider.value)",
-                        "Bat_Voltage" : "\(self.BatSlider.value)"
-                        ]
-                    
-                    ]
-        
-        
-        Alamofire.request(.POST, URL, parameters: (data as! [String : AnyObject]), encoding: ParameterEncoding.JSON, headers: header)
+//        
+//        
+//
+//        
+//        
+//        let data = ["D_id":self.DeviceName.text!,
+//                    "Status": self.StateSegement.selectedSegmentIndex.description,
+//                    "Operational_data": [
+//                        "Cap_Voltage" : "\(self.CapSlider.value)",
+//                        "Bat_Voltage" : "\(self.BatSlider.value)"
+//                        ]
+//                    
+//                    ]
+//        
+//        
+//        Alamofire.request(.POST, URL, parameters: (data as! [String : AnyObject]), encoding: ParameterEncoding.JSON, headers: header)
         
         
     }

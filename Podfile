@@ -5,6 +5,7 @@ use_frameworks!
 
 target 'Thermastat' do
 pod 'Alamofire', '~> 3.0'
+pod 'IQKeyboardManagerSwift'
 end
 
 target 'ThermastatTests' do
